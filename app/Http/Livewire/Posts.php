@@ -4,17 +4,23 @@ namespace App\Http\Livewire;
 
 use App\Models\Post;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Posts extends Component
 {
-    public $posts;
-    public $title, $description, $postId;
+    use WithPagination;
+
+    public $search;
     public $isOpen = 0;
+    public $title, $description, $postId;
 
     public function render()
     {
-        $this->posts = Post::all();
-        return view('livewire.posts');
+        $searchParams = '%'.$this->search.'%';
+        
+        return view('livewire.posts', [
+            'posts' => Post::where('title', 'like', $searchParams)->latest()->paginate(5),
+        ]);
     }
 
     public function showModal()
@@ -63,5 +69,6 @@ class Posts extends Component
     public function delete($id)
     {
       Post::findOrFail($id)->delete();
+      session()->flash('delete', "Berhasil Menghapus Data");
     }
 }

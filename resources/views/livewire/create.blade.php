@@ -38,10 +38,16 @@
             <div class="mb-2">
               <label class="block">Title</label>
               <input type="text" wire:model="title" class="shadow appearance-none border rounded w-full py-2 px-3 text-blue-900" value="">
+              @error ('title')
+                <h1 class="text-red-500">{{$message}}</h1>
+              @enderror
             </div>
             <div class="mb-2">
               <label class="block">Description</label>
               <textarea type="text" wire:model="description" class="shadow appearance-none border rounded w-full py-2 px-3 text-blue-900"></textarea>
+              @error ('description')
+                <h1 class="text-red-500">{{$message}}</h1>
+              @enderror
             </div>
           </div>
         </div>
