@@ -5,9 +5,9 @@
       </h2>
   </x-slot>
 
-  <div class="max-w-6xl mx-auto sm:px-6 lg:px-8 mt-5">
+  <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mt-5">
     @if ($isOpen)
-      @include('livewire.create')
+      @include('livewire.posts.create')
     @endif
 
     @if (session()->has('info'))

@@ -17,8 +17,8 @@ class Posts extends Component
     public function render()
     {
         $searchParams = '%'.$this->search.'%';
-        
-        return view('livewire.posts', [
+
+        return view('livewire.posts.page', [
             'posts' => Post::where('title', 'like', $searchParams)->latest()->paginate(5),
         ]);
     }
