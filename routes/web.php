@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Livewire\Product;
 use App\Http\Livewire\Posts;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,7 +19,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('posts', Posts::class)->middleware('auth');
+Route::group(['middleware' => 'auth'], function () {
+  Route::get('posts', Posts::class);
+  Route::get('products', Product::class);
+});
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
