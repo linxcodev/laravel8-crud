@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Product;
 use App\Http\Livewire\Posts;
 use App\Http\Livewire\Cart;
+use App\Http\Controllers\PayOrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,3 +30,7 @@ Route::group(['middleware' => 'auth'], function () {
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+
+
+// advance
+Route::get('pay', [PayOrderController::class, 'store']);
